@@ -1,0 +1,12 @@
+.container {
+  width: 80%;
+  max-width: 770px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: lightslategray;
+  color: khaki;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

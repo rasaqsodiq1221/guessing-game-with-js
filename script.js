@@ -1,23 +1,21 @@
-let randomNumber = math.floor(math.random() * 50) + 1;
+let randomNumber = Math.floor(Math.random() * 50) + 1;
 
-const guesses = document.querySelector ('guesses');
-const rightOrWrong = document.querySelector ('rightOrWrong');
-const lowOrHigh = document.querySelector ('lowOrHigh');
+const guesses = document.querySelector ('.guesses');
+const rightOrWrong = document.querySelector ('.rightOrWrong');
+const lowOrHigh = document.querySelector ('.lowOrHigh');
 
 const guessInput = document.querySelector ('.guessInput');
 const guessSubmit = document.querySelector ('.guessSubmit');
 
 let guessCount = 1;
-guessInput.focus();
-
 let resetButton;
 
 function checkGuess () {
   const userGuess = Number(guessInput.value);
   if (guessCount === 1) {
     guesses.textContent = 'Previous guesses: ';
-    textContent += userGuess + '';
   }
+  guesses.textContent += userGuess + ' ';
 
   if (userGuess === randomNumber) {
     rightOrWrong.textContent = "correct! simple, isn't it? ";
@@ -29,7 +27,7 @@ function checkGuess () {
   else if (guessCount === 5) {
     rightOrWrong.textContent = 'GAMEOVER!!!';
     rightOrWrong.style.backgroundColor = 'red';
-    lowOrHigh = " ";
+    lowOrHigh.textContent = " ";
     setGameOver();
   }
 
@@ -44,10 +42,10 @@ function checkGuess () {
     }
 
     guessCount ++;
-    guessInput = " ";
+    guessInput.value = " ";
     guessInput.focus();
+    console.log(guessCount)
   }
-
 }
 
 guessSubmit.addEventListener('click', checkGuess);
@@ -58,25 +56,27 @@ function setGameOver() {
   resetButton = document.createElement ('button');
   resetButton.textContent = "Dare again!";
   document.body.append (resetButton);
-  resetButton.addEventListener = ('click', resetGame);
+  resetButton.addEventListener('click', resetGame);
 }
 
 function resetGame() {
-  guessCount = 1;
-
-  const results = document.querySelectorAll ('.results h1 h2');
-  for (const result of results) {
-  result.textContent = " ";
+  guessCount = 0;
+  
+  const resetResults = document.querySelectorAll ('.results h2');
+  for (const resetResult of resetResults) {
+    resetResult.textContent = " ";
   }
-
+  
   resetButton.parentNode.removeChild(resetButton);
-
+  
   guessInput.disabled = false;
   guessSubmit.disabled = false;
-  guessInput.value = '';
+  guessInput.value = ' ';
   guessInput.focus();
-
+  
   rightOrWrong.style.backgroundColor = 'white';
-
+  
   randomNumber = Math.floor(Math.random() * 50) + 1;
+  console.log("Heyy")
 }
+
